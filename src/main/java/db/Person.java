@@ -14,6 +14,7 @@ public class Person {
     private String lastName;
     
     public Person() {
+        id = 0;
     }
 
     public Person(@NotNull Integer id, String firstName, @Nullable String lastName) {

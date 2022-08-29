@@ -14,18 +14,22 @@ import java.util.stream.IntStream;
 
 
 public class DatabaseOperations {
-    public static final String SQL_CONNECTION_ERROR = "SQL connection error!";
     public static final String DROP_TABLE_IF_EXISTS_QUERY = "drop table if exists %s;\n";
     public static final String CREATE_TABLE_QUERY_PART = "create table %s (";
     public static final String NOT_NULL = "NOT NULL";
     public static final String PRIMARY_KEY = "PRIMARY KEY";
-    public static final String AUTOINCREMENT = "AUTO INCREMENT";
+    // MySQLite feature for primary key
+//    public static final String AUTOINCREMENT = "AUTO INCREMENT";
 
     public static final String ID_COLUMN_NAME = "id";
     public static final String FIRST_NAME_COLUMN_NAME = "firstName";
     public static final String LAST_NAME_COLUMN_NAME = "lastName";
     public static final String SELECT_FROM_PERSON_QUERY = "SELECT * FROM person";
-    public static final String CONNECTION_URL_DRIVER = "jdbc:sqlite:sample.db";
+    // SQLite
+//    public static final String CONNECTION_URL_DRIVER = "jdbc:sqlite:sample.db";
+    // Postgres
+//    public static final String CONNECTION_URL_DRIVER =
+//        "jdbc:postgresql://localhost/admin?user=admin&password=admin&ssl=false";
     public static final String CREATE_TABLE_CLOSE_BRACKET = " );";
     public static final String PERSON_TABLE_NAME = "Person";
     public static final String INSERT_INTO_PATTERN = "insert into %s(";
@@ -112,10 +116,10 @@ public class DatabaseOperations {
     }
 
     @SuppressWarnings("SameParameterValue")
-    public static Statement makeConnection(String connectionUrl) throws SQLException {
-        return Optional.of(DriverManager.getConnection(connectionUrl).createStatement())
-                .orElseThrow(() -> new SQLException(SQL_CONNECTION_ERROR));
-    }
+//    public static Statement makeConnection(String connectionUrl) throws SQLException {
+//        return Optional.of(DriverManager.getConnection(connectionUrl).createStatement())
+//                .orElseThrow(() -> new SQLException(SQL_CONNECTION_ERROR));
+//    }
 
     public static List<String> browseData(ResultSet resultSet) throws SQLException {
         List<String> result = new ArrayList<>();
@@ -157,7 +161,7 @@ public class DatabaseOperations {
                 new QueryColumnDataStructure(
                     ID_COLUMN_NAME,
                     JDBCType.VARCHAR,
-                    Optional.of(List.of(AUTOINCREMENT, NOT_NULL, PRIMARY_KEY))),
+                    Optional.of(List.of(/*AUTOINCREMENT, */NOT_NULL, PRIMARY_KEY))),
                 new QueryColumnDataStructure(
                         FIRST_NAME_COLUMN_NAME,
                         JDBCType.VARCHAR,
