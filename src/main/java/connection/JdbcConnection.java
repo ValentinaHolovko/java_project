@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ConnectionPool {
-    Connection getConnection() throws SQLException;
+public interface JdbcConnection {
+//    DataConnection getConnection() throws SQLException;
 
     boolean releaseConnection(Connection connection);
 
     List<Connection> getConnectionPool();
+
+    public Connection getConnection() throws SQLException;
 
     int getSize();
 

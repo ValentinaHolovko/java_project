@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConnectionPoolImplementation implements ConnectionPool {
+import static java.sql.Connection.TRANSACTION_SERIALIZABLE;
+
+public class JdbcConnectionImplementation implements JdbcConnection {
 
     private static final int INITIAL_POOL_SIZE = 10;
     private static final int MAX_POOL_SIZE = 20;
@@ -18,26 +20,29 @@ public class ConnectionPoolImplementation implements ConnectionPool {
     private final List<Connection> connectionPool;
     private final List<Connection> usedConnections = new ArrayList<>();
 
-    public ConnectionPoolImplementation(String url, String user, String password, List<Connection> connectionPool) {
+    public JdbcConnectionImplementation(String url, String user, String password, List<Connection> connectionPool) {
         this.url = url;
         this.user = user;
         this.password = password;
         this.connectionPool = connectionPool;
     }
 
-    public static ConnectionPoolImplementation create(String url, String user, String password) throws SQLException {
+    public static JdbcConnectionImplementation create(String url, String user, String password) throws SQLException {
         List<Connection> pool = new ArrayList<>(INITIAL_POOL_SIZE);
         for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
             pool.add(createConnection(url, user, password));
         }
-        return new ConnectionPoolImplementation(url, user, password, pool);
+        return new JdbcConnectionImplementation(url, user, password, pool);
     }
 
     private static Connection createConnection(String url, String user, String password) throws SQLException {
-        return DriverManager.getConnection(url, user, password);
+        Connection connection = DriverManager.getConnection(url, user, password);
+        System.out.println(connection.getTransactionIsolation());
+        connection.setTransactionIsolation(TRANSACTION_SERIALIZABLE);
+        System.out.println(connection.getTransactionIsolation());
+        return connection;
     }
 
-    @Override
     public Connection getConnection() throws SQLException {
         if (connectionPool.isEmpty()) {
             if (usedConnections.size() < MAX_POOL_SIZE) {

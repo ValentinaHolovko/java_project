@@ -123,9 +123,9 @@ public class DatabaseOperations {
 
     public static List<String> browseData(ResultSet resultSet) throws SQLException {
         List<String> result = new ArrayList<>();
+        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         while (resultSet.next()) {
-
-            result.add(IntStream.range(1, 4)
+            result.add(IntStream.range(1, resultSetMetaData.getColumnCount() + 1)
                     .mapToObj(columnIndex -> getResultSet(resultSet, columnIndex))
                     .map(String::valueOf)
                     .collect(Collectors.joining(DELIMITER)));
