@@ -3,21 +3,21 @@ import connection.JdbcConnectionImplementation;
 
 import java.net.URISyntaxException;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import static db.DatabaseOperations.*;
 import static java.sql.Connection.TRANSACTION_REPEATABLE_READ;
 
-public class Launcher {
+public class
+Launcher {
 
 
     private static final String DB_NAME = "admin";
     private static final String DB_USER = "admin";
     private static final String DB_PASSWORD = "admin";
 
-//    private static final String CONNECTION_URL = String.format(
+    //    private static final String CONNECTION_URL = String.format(
 //            "jdbc:sqlite:%s", DB_NAME);
     private static final String CONNECTION_URL = String.format(
             "jdbc:postgresql:%s", DB_NAME);

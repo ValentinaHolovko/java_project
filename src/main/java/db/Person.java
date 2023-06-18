@@ -12,7 +12,7 @@ public class Person {
 
     @Nullable
     private String lastName;
-    
+
     public Person() {
         id = 0;
     }
@@ -23,6 +23,13 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public static Person parsePerson(String[] strings) {
+        if (strings.length < 3) {
+            return new Person(Integer.valueOf(strings[0]), strings[1], null);
+        }
+        return new Person(Integer.valueOf(strings[0]), strings[1], strings[2]);
+
+    }
 
     @NotNull
     public Integer getId() {
@@ -32,7 +39,6 @@ public class Person {
     public void setId(@NotNull Integer id) {
         this.id = id;
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -58,14 +64,6 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
-    }
-    
-    public static Person parsePerson(String[] strings) {
-        if (strings.length < 3) {
-            return new Person(Integer.valueOf(strings[0]), strings[1], null);
-        }
-        return new Person(Integer.valueOf(strings[0]), strings[1], strings[2]);
-
     }
 
 }

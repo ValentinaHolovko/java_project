@@ -54,7 +54,7 @@ public class JdbcConnectionImplementation implements JdbcConnection {
 
         Connection connection = connectionPool.remove(connectionPool.size() - 1);
 
-        if(!connection.isValid(MAX_TIMEOUT)){
+        if (!connection.isValid(MAX_TIMEOUT)) {
             connection = createConnection(url, user, password);
         }
 

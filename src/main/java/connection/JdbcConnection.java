@@ -11,7 +11,7 @@ public interface JdbcConnection {
 
     List<Connection> getConnectionPool();
 
-    public Connection getConnection() throws SQLException;
+    Connection getConnection() throws SQLException;
 
     int getSize();
 
@@ -21,5 +21,6 @@ public interface JdbcConnection {
 
     String getPassword();
 
-    void shutdown() throws SQLException;;
+    void shutdown() throws SQLException;
+
 }

@@ -89,9 +89,9 @@ public class DatabaseOperations {
 
     @SuppressWarnings({"StringBufferReplaceableByString", "SameParameterValue"})
     private static String insertQueryString(String tableName,
-                                                String fields,
-                                                String values
-                                                ) {
+                                            String fields,
+                                            String values
+    ) {
         return new StringBuilder()
                 .append(String.format(INSERT_INTO_PATTERN, tableName))
                 .append(fields)
@@ -108,7 +108,7 @@ public class DatabaseOperations {
 
     @SuppressWarnings("SameParameterValue")
     public static List<Person> getPersonData(String resourceFileName) throws URISyntaxException {
-         return getDataFromCsv(resourceFileName, Person::parsePerson);
+        return getDataFromCsv(resourceFileName, Person::parsePerson);
     }
 
     public static void createTable(Statement statement, String query) throws SQLException {
@@ -148,7 +148,7 @@ public class DatabaseOperations {
     public static <T> List<T> getDataFromCsv(String resourceFileName, Function<String[], T> mappingDataMethod)
             throws URISyntaxException {
         return ReadFileSingleton.getInstance().readFileSource(
-                Objects.requireNonNull(DatabaseOperations.class.getClassLoader().getResource(resourceFileName)).toURI())
+                        Objects.requireNonNull(DatabaseOperations.class.getClassLoader().getResource(resourceFileName)).toURI())
                 .stream()
                 .map(String::valueOf)
                 .map(x -> x.split(CSV_DELIMITER))
@@ -159,9 +159,9 @@ public class DatabaseOperations {
     public static List<QueryColumnDataStructure> createPersonTableRequest() {
         return List.of(
                 new QueryColumnDataStructure(
-                    ID_COLUMN_NAME,
-                    JDBCType.VARCHAR,
-                    Optional.of(List.of(/*AUTOINCREMENT, */NOT_NULL, PRIMARY_KEY))),
+                        ID_COLUMN_NAME,
+                        JDBCType.VARCHAR,
+                        Optional.of(List.of(/*AUTOINCREMENT, */NOT_NULL, PRIMARY_KEY))),
                 new QueryColumnDataStructure(
                         FIRST_NAME_COLUMN_NAME,
                         JDBCType.VARCHAR,
@@ -175,7 +175,7 @@ public class DatabaseOperations {
 
     @SuppressWarnings({"StringBufferReplaceableByString", "SameParameterValue"})
     public static String generateTableQuery(String tableName,
-                                             List<QueryColumnDataStructure> queryColumnDescription) {
+                                            List<QueryColumnDataStructure> queryColumnDescription) {
         return new StringBuilder()
                 .append(String.format(DROP_TABLE_IF_EXISTS_QUERY, tableName))
                 .append(String.format(CREATE_TABLE_QUERY_PART, tableName))

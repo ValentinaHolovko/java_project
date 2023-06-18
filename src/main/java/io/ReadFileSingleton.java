@@ -13,11 +13,10 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class ReadFileSingleton {
+    private static final Logger logger = Logger.getLogger(ReadFileSingleton.class.getName());
     private static ReadFileSingleton instance;
 
-    private static final Logger logger = Logger.getLogger(ReadFileSingleton.class.getName());
-
-    private ReadFileSingleton(){
+    private ReadFileSingleton() {
     }
 
     public static synchronized ReadFileSingleton getInstance() {
@@ -40,10 +39,9 @@ public class ReadFileSingleton {
     }
 
     private List<String> readFile(Path filePath, List<String> fileSource) {
-        try (Stream<String> stringStream = Files.lines(filePath)){
+        try (Stream<String> stringStream = Files.lines(filePath)) {
             fileSource = stringStream.toList();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             logger.log(Level.SEVERE, "Read file error");
         }
         return fileSource;
