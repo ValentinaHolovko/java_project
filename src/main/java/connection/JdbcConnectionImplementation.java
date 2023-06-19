@@ -9,6 +9,7 @@ import java.util.List;
 import static java.sql.Connection.TRANSACTION_SERIALIZABLE;
 
 public class JdbcConnectionImplementation implements JdbcConnection {
+
     private static final int INITIAL_POOL_SIZE = 10;
     private static final int MAX_POOL_SIZE = 20;
     private static final int MAX_TIMEOUT = 5;

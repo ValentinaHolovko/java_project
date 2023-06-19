@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface JdbcConnection {
-
     boolean releaseConnection(Connection connection);
 
     List<Connection> getConnectionPool();

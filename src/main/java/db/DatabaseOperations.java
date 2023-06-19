@@ -158,7 +158,6 @@ public class DatabaseOperations {
 
     }
 
-
     public static String generateTableQuery(String tableName,
                                             List<QueryColumnDataStructure> queryColumnDescription) {
         return new StringBuilder()
