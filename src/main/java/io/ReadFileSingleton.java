@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+
 public class ReadFileSingleton {
     private static final Logger logger = Logger.getLogger(ReadFileSingleton.class.getName());
     private static ReadFileSingleton instance;

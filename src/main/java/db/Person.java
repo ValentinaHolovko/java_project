@@ -3,7 +3,6 @@ package db;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-
 public class Person {
     @NotNull
     private Integer id;

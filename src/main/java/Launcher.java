@@ -17,8 +17,7 @@ Launcher {
     private static final String DB_USER = "admin";
     private static final String DB_PASSWORD = "admin";
 
-    //    private static final String CONNECTION_URL = String.format(
-//            "jdbc:sqlite:%s", DB_NAME);
+
     private static final String CONNECTION_URL = String.format(
             "jdbc:postgresql:%s", DB_NAME);
 

@@ -1,6 +1,5 @@
 package db;
 
-
 import io.ReadFileSingleton;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,24 +11,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
 public class DatabaseOperations {
     public static final String DROP_TABLE_IF_EXISTS_QUERY = "drop table if exists %s;\n";
     public static final String CREATE_TABLE_QUERY_PART = "create table %s (";
     public static final String NOT_NULL = "NOT NULL";
     public static final String PRIMARY_KEY = "PRIMARY KEY";
-    // MySQLite feature for primary key
-//    public static final String AUTOINCREMENT = "AUTO INCREMENT";
 
     public static final String ID_COLUMN_NAME = "id";
     public static final String FIRST_NAME_COLUMN_NAME = "firstName";
     public static final String LAST_NAME_COLUMN_NAME = "lastName";
     public static final String SELECT_FROM_PERSON_QUERY = "SELECT * FROM person";
-    // SQLite
-//    public static final String CONNECTION_URL_DRIVER = "jdbc:sqlite:sample.db";
-    // Postgres
-//    public static final String CONNECTION_URL_DRIVER =
-//        "jdbc:postgresql://localhost/admin?user=admin&password=admin&ssl=false";
+
     public static final String CREATE_TABLE_CLOSE_BRACKET = " );";
     public static final String PERSON_TABLE_NAME = "Person";
     public static final String INSERT_INTO_PATTERN = "insert into %s(";
@@ -56,7 +48,6 @@ public class DatabaseOperations {
 
     }
 
-    @SuppressWarnings("StringBufferReplaceableByString")
     private static <T> String getValueFromField(Field field, T object) {
         String result = "";
         try {
@@ -70,7 +61,7 @@ public class DatabaseOperations {
         return result;
     }
 
-    @SuppressWarnings("SameParameterValue")
+
     private static <T> List<Field> getExistedFields(Class<T> personClass, T object) {
         return Arrays.stream(personClass.getDeclaredFields())
                 .filter(x -> {
@@ -87,7 +78,6 @@ public class DatabaseOperations {
 
     }
 
-    @SuppressWarnings({"StringBufferReplaceableByString", "SameParameterValue"})
     private static String insertQueryString(String tableName,
                                             String fields,
                                             String values
@@ -106,7 +96,6 @@ public class DatabaseOperations {
         return s.substring(s.indexOf(".") + 1);
     }
 
-    @SuppressWarnings("SameParameterValue")
     public static List<Person> getPersonData(String resourceFileName) throws URISyntaxException {
         return getDataFromCsv(resourceFileName, Person::parsePerson);
     }
@@ -115,11 +104,7 @@ public class DatabaseOperations {
         statement.executeUpdate(query);
     }
 
-    @SuppressWarnings("SameParameterValue")
-//    public static Statement makeConnection(String connectionUrl) throws SQLException {
-//        return Optional.of(DriverManager.getConnection(connectionUrl).createStatement())
-//                .orElseThrow(() -> new SQLException(SQL_CONNECTION_ERROR));
-//    }
+
 
     public static List<String> browseData(ResultSet resultSet) throws SQLException {
         List<String> result = new ArrayList<>();
@@ -173,7 +158,7 @@ public class DatabaseOperations {
 
     }
 
-    @SuppressWarnings({"StringBufferReplaceableByString", "SameParameterValue"})
+
     public static String generateTableQuery(String tableName,
                                             List<QueryColumnDataStructure> queryColumnDescription) {
         return new StringBuilder()
